@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="milibro.editorial_tree">
+            <field name="name">Listado de editoriales</field>
+            <field name="model">milibro.editorial</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nombre"/>
+                    <field name="direccion"/>
+                    <field name="poblacion"/>
+                    <field name="cantidad_libros"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="milibro.editorial_form">
+            <field name="name">Formulario de editoriales</field>
+            <field name="model">milibro.editorial</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="nombre"/>
+                        </group>
+                        <group string="Información de contacto">
+                            <field name="direccion"/>
+                            <field name="poblacion"/>
+                            <field name="cantidad_libros"/>
+                        </group>
+                        <notebook>
+                            <page string="Libros">
+                                <field name="libro_ids">
+                                    <tree>
+                                        <field name="nombre"/>
+                                        <field name="isbn"/>
+                                        <field name="autor_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="milibro.editorial_act_window">
+            <field name="name">Editoriales</field>
+            <field name="res_model">milibro.editorial</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Cree la primera editorial.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Editoriales" id="milibro.editorial_menu_root" parent="milibro.auxiliares"
+                  action="milibro.editorial_act_window"/>
+    </data>
+</odoo>

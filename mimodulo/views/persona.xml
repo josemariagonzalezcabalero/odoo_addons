@@ -1,0 +1,40 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="mimodulo.persona_tree">
+      <field name="name">Listado personas</field>
+      <field name="model">mimodulo.persona</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="apellidos"/>
+          <field name="fecha_nacimiento"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Acción de ventana -->
+    <record model="ir.actions.act_window" id="mimodulo.persona_action_window">
+      <field name="name">Personas</field>
+      <field name="res_model">mimodulo.persona</field> <!-- El modelo sobre el que se aplicará la accion de ventana -->
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- Top menu item / Elemento de menu -->
+    <menuitem name="Mi Modulo" id="mimodulo.menu_root"/>
+
+  <!-- menu categories / subemnú -->
+    <menuitem name="Persona" id="mimodulo.menu_persona" parent="mimodulo.menu_root" action="mimodulo.persona_action_window"/>
+    <!--
+    <menuitem name="Menu 2" id="mimodulo.menu_2" parent="mimodulo.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="mimodulo.menu_1_list" parent="mimodulo.menu_1"
+              action="mimodulo.action_window"/>
+    <menuitem name="Server to list" id="mimodulo" parent="mimodulo.menu_2"
+              action="mimodulo.action_server"/>
+-->
+  </data>
+</odoo>

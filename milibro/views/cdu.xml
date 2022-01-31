@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="milibro.cdu_tree">
+            <field name="name">Listado de CDU</field>
+            <field name="model">milibro.cdu</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="milibro.cdu_form">
+            <field name="name">Formulario de CDU</field>
+            <field name="model">milibro.cdu</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+<!--                        <notebook>-->
+<!--                            <page string="Libros">-->
+<!--                                <field name="libro_ids">-->
+<!--                                    <tree>-->
+<!--                                        <field name="nombre"/>-->
+<!--                                        <field name="isbn"/>-->
+<!--                                        <field name="editorial_id"/>-->
+<!--                                    </tree>-->
+<!--                                </field>-->
+<!--                            </page>-->
+<!--                        </notebook>-->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="milibro.autor_act_window">
+            <field name="name">CDU</field>
+            <field name="res_model">milibro.cdu</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Cree el primer CDU.
+                </p>
+            </field>
+        </record>
+
+<!--        <menuitem name="Autores" id="milibro.autor_menu_root" parent="milibro.auxiliares" action="milibro.autor_act_window"/>-->
+    </data>
+</odoo>

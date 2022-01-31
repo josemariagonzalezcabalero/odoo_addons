@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="milibro.categoria_act_window">
+            <field name="name">Categorias</field>
+            <field name="res_model">milibro.categoria</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Cree la primera categoria.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Categorias" id="milibro.categoria_menu_root" parent="milibro.auxiliares" action="milibro.categoria_act_window"/>
+
+    </data>
+</odoo>

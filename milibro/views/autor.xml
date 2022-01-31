@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="milibro.autor_tree">
+            <field name="name">Listado de autores</field>
+            <field name="model">milibro.autor</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nombre"/>
+                    <field name="apellidos"/>
+                    <field name="cantidad_libros_escritos"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="milibro.autor_form">
+            <field name="name">Formulario de autores</field>
+            <field name="model">milibro.autor</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="nombre"/>
+                            <field name="apellidos"/>
+                            <field name="cantidad_libros_escritos"/>
+                            <field name="name"/>
+                        </group>
+                        <notebook>
+                            <page string="Libros">
+                                <field name="libro_ids">
+                                    <tree>
+                                        <field name="nombre"/>
+                                        <field name="isbn"/>
+                                        <field name="editorial_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="milibro.autor_act_window">
+            <field name="name">Autores</field>
+            <field name="res_model">milibro.autor</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Cree el primer autor.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Autores" id="milibro.autor_menu_root" parent="milibro.auxiliares" action="milibro.autor_act_window"/>
+
+    </data>
+</odoo>
