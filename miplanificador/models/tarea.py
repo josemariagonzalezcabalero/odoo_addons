@@ -11,3 +11,10 @@ class Tarea(models.Model):
     fecha_inicio = fields.Date(string="Fecha de inicio")
     fecha_fin = fields.Date(string="Fecha de fin")
     estado = fields.Selection([('0', 'No iniciada'), ('1', 'Iniciada'), ('2', 'Aparcada'), ('3', 'Finalizada')])
+
+    # Relaciones
+    proyecto_id = fields.Many2one(string="Proyecto", comodel_name="miplanificador.proyecto")
+    trabajos_ids = fields.One2many(string="Trabajos", comodel_name="miplanificador.trabajo", inverse_name="trabajo_id")
+    categorias_ids = fields.One2many(string="Categorias", comodel_name="miplanificador.categoria", inverse_name="categoria_id")
+
+

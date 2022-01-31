@@ -8,3 +8,7 @@ class Trabajo(models.Model):
     name = fields.Char(string="Trabajo realizado", required=True)
     horas = fields.Float(string="Horas dedicadas", required=True)
 
+    # Relaciones
+    tarea_id = fields.Many2one(string="Tarea", comodel_name="miplanificador.tarea")
+
+
