@@ -4,3 +4,4 @@ access_milibro_autor,Acceso usuarios internos,model_milibro_autor,base.group_use
 access_milibro_editorial,Acceso usuarios internos,model_milibro_editorial,base.group_user,1,1,1,1
 access_milibro_categoria,Acceso usuarios internos,model_milibro_categoria,base.group_user,1,1,1,1
 access_milibro_cdu,Acceso usuarios internos,model_milibro_cdu,base.group_user,1,1,1,1
+access_milibro_cdu,Acceso usuarios internos,model_milibro_ejemplar,base.group_user,1,1,1,1

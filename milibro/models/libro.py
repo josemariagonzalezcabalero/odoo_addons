@@ -25,7 +25,7 @@ class Libro(models.Model):
      editorial_id = fields.Many2one(comodel_name="milibro.editorial", string="Editorial", required=True)
      categoria_ids = fields.Many2many(comodel_name="milibro.categoria", string="Categorias")
      cdu_id = fields.Many2one(comodel_name="milibro.cdu", string="CDU")
-     ejemplar_id = fields.One2many(comodel_name="milibro.ejemplar", inverse_name="libro_ids")
+     ejemplar_id = fields.One2many(comodel_name="milibro.ejemplar", inverse_name="libro_id")
 
 
      # Métodos
