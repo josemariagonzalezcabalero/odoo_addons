@@ -8,7 +8,7 @@ class Libro(models.Model):
      _name = 'milibro.libro'
      _description = 'Pequeña descripción de mi libro'
 
-     nombre = fields.Char(string="Titulo", required=True, help="El nombre del libro.")
+     name = fields.Char(string="Titulo", required=True, help="El nombre del libro.")
      descripcion = fields.Text(string="Descripción", required=True, help="Descripción del libro.")
      isbn = fields.Char(string="ISBN", help="Identificador único del libro.")
 
@@ -24,8 +24,9 @@ class Libro(models.Model):
      autor_id = fields.Many2one(comodel_name="milibro.autor", string="Autor", required=True)
      editorial_id = fields.Many2one(comodel_name="milibro.editorial", string="Editorial", required=True)
      categoria_ids = fields.Many2many(comodel_name="milibro.categoria", string="Categorias")
+     cdu_id = fields.Many2one(comodel_name="milibro.cdu", string="CDU")
+     ejemplar_id = fields.One2many(comodel_name="milibro.ejemplar", inverse_name="libro_ids")
 
-     cdu = fields.Many2one(comodel_name="milibro.cdu", string="CDU")
 
      # Métodos
      @api.onchange("num_paginas")
@@ -42,4 +43,10 @@ class Libro(models.Model):
           if self.num_paginas < 0:
                raise ValidationError("El número de páginas no puede ser negativo (constrains)")
 
-     @api.onchange("nombre","autor_id","cdu")
+     @api.depends("name","autor_id","cdu_id")
+     def _calcular_tejuelo(self):
+          for libro in self:
+               if libro.name and libro.cdu_id and libro.autor_id:
+                    libro.tejuelo = f'{libro.cdu_id.name}-{libro.name[0:3].upper()}-{libro.autor_id.name[0:3].lower()}'
+               else:
+                    libro.tejuelo = ""

@@ -32,7 +32,7 @@
                             <page string="Libros">
                                 <field name="libro_ids">
                                     <tree>
-                                        <field name="nombre"/>
+                                        <field name="name"/>
                                         <field name="isbn"/>
                                         <field name="autor_id"/>
                                     </tree>
