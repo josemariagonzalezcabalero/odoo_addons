@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <record model="ir.ui.view" id="milibro.categoria_tree">
+            <field name="name">Listado de Categorias</field>
+            <field name="model">milibro.categoria</field>
+            <field name="arch" type="xml">
+                <tree edit="1" editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="milibro.categoria_act_window">
             <field name="name">Categorias</field>
             <field name="res_model">milibro.categoria</field>
@@ -12,7 +22,14 @@
             </field>
         </record>
 
-        <menuitem name="Categorias" id="milibro.categoria_menu_root" parent="milibro.auxiliares" action="milibro.categoria_act_window"/>
+        <record model="ir.actions.act_window" id="milibro.categoria_action_window">
+            <field name="name">Categoria</field>
+            <field name="res_model">milibro.categoria</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem name="Categorias" id="milibro.categoria_menu_root" parent="milibro.auxiliares"
+                  action="milibro.categoria_act_window"/>
 
     </data>
 </odoo>

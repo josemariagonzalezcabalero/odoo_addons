@@ -16,6 +16,11 @@ class Libro(models.Model):
 
      tejuelo = fields.Char(string="Tejuelo", compute="_calcular_tejuelo")
 
+     imagen = fields.Image(string="Imagen", max_width=425, max_height=640, store=True)
+
+     numejemplares = fields.Integer(string="Nº de ejemplares", compute="_calcular_ejemplares")
+     numejemplares_disponibles = fields.Integer(string="Nº disponibles", compute="_calcular_ejemplares")
+
      _sql_constraints = [
           ('isbn','unique(isbn)','El ISBN debe ser único')
      ]
@@ -50,3 +55,15 @@ class Libro(models.Model):
                     libro.tejuelo = f'{libro.cdu_id.name}-{libro.name[0:3].upper()}-{libro.autor_id.name[0:3].lower()}'
                else:
                     libro.tejuelo = ""
+
+     @api.depends("ejemplar_id")
+     def _calcular_ejemplares(self):
+          n_ejemplares = 0
+          n_disponibles = 0
+          for ejemplar in self:
+               n_ejemplares += 1
+               if ejemplar.situacion:
+                    n_disponibles += 1
+
+          self.numejemplares = n_ejemplares
+          self.numejemplares_disponibles = n_disponibles

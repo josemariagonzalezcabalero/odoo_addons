@@ -5,7 +5,7 @@ class Ejemplar(models.Model):
     _name = 'milibro.ejemplar'
     _description = 'Pequeña descripcion del ejemplar'
 
-    name = fields.Char(string="Código", compute="_calcular_código")
+    name = fields.Char(string="Código", compute="_calcular_codigo")
 
     situacion = fields.Boolean(string="Disponible", default=True)
 
@@ -17,7 +17,9 @@ class Ejemplar(models.Model):
 
     # Métodos
     @api.depends("create_date")
-    def _cantidad_libros(self):
+    def _calcular_codigo(self):
         for ejemplar in self:
             ejemplar.name = ejemplar.id
             ejemplar.name = ejemplar.name.zfill(13)
+
+

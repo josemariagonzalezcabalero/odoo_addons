@@ -21,9 +21,9 @@
                 <form>
                     <sheet>
                         <group>
-                            <field name="nombre"/>
-                            <field name="apellidos"/>
-                            <field name="cantidad_libros_escritos"/>
+                            <field name="nombre" placeholder="Introduce el nombre del autor"/>
+                            <field name="apellidos" placeholder="Introduce los apellidos del autor"/>
+                            <field name="cantidad_libros_escritos" invisible="1"/>
                             <field name="name"/>
                         </group>
                         <notebook>
@@ -33,12 +33,24 @@
                                         <field name="name"/>
                                         <field name="isbn"/>
                                         <field name="editorial_id"/>
+                                        <field name="autor_id"/>
                                     </tree>
                                 </field>
                             </page>
                         </notebook>
                     </sheet>
                 </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="milibro.autor_search">
+            <field name="name">Búsqueda de autores</field>
+            <field name="model">milibro.autor</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="apellidos"/>
+                </search>
             </field>
         </record>
 

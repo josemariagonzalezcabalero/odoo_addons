@@ -23,10 +23,10 @@
                         <group>
                             <field name="nombre"/>
                         </group>
-                        <group string="Información de contacto">
+                        <group>
                             <field name="direccion"/>
                             <field name="poblacion"/>
-                            <field name="cantidad_libros"/>
+                            <field name="cantidad_libros" invisible="1"/>
                         </group>
                         <notebook>
                             <page string="Libros">
@@ -34,13 +34,25 @@
                                     <tree>
                                         <field name="name"/>
                                         <field name="isbn"/>
-                                        <field name="autor_id"/>
+                                        <field name="editorial_id"/>
                                     </tree>
                                 </field>
                             </page>
                         </notebook>
                     </sheet>
                 </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="milibro.editorial_search">
+            <field name="name">Búsqueda de editoriales</field>
+            <field name="model">milibro.editorial</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="nombre"/>
+                    <field name="direccion"/>
+                    <field name="poblacion"/>
+                </search>
             </field>
         </record>
 

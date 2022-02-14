@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-
         <record model="ir.ui.view" id="milibro.cdu_tree">
             <field name="name">Listado de CDU</field>
             <field name="model">milibro.cdu</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree edit="1" editable="bottom">
                     <field name="name"/>
                     <field name="description"/>
                 </tree>
