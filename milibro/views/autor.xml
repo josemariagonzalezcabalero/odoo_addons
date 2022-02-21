@@ -54,10 +54,21 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="milibro.autor_graph_libros_autor">
+            <field name="name">Gráfico de libros por autor</field>
+            <field name="model">milibro.autor</field>
+            <field name="arch" type="xml">
+                <graph type="pie">
+                    <field  name="nombre"/>
+                    <field type="measure" name="cantidad_libros_escritos"/>
+                </graph>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="milibro.autor_act_window">
             <field name="name">Autores</field>
             <field name="res_model">milibro.autor</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,search,graph</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                     Cree el primer autor.

@@ -56,10 +56,21 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="milibro.libro_graph_libros_editorial">
+            <field name="name">Gráfico de libros por editorial</field>
+            <field name="model">milibro.editorial</field>
+            <field name="arch" type="xml">
+                <graph type="bar">
+                    <field name="nombre"/>
+                    <field name="cantidad_libros" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="milibro.editorial_act_window">
             <field name="name">Editoriales</field>
             <field name="res_model">milibro.editorial</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,search,graph</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                     Cree la primera editorial.

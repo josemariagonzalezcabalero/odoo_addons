@@ -8,7 +8,7 @@ class Autor(models.Model):
     nombre = fields.Char(string="Nombre", required=True, help="Nombre del autor.")
     apellidos = fields.Char(string="Apellidos", required=True, help="Apellidos del autor.")
 
-    cantidad_libros_escritos = fields.Integer(string="Cantidad de libros escritos", compute="_cantidad_libros")
+    cantidad_libros_escritos = fields.Integer(string="Cantidad de libros escritos", compute="_cantidad_libros", store=True)
     name = fields.Char(string="Nombre comleto", compute="_nombre_completo")
 
     # Relaciones
@@ -22,5 +22,6 @@ class Autor(models.Model):
 
     @api.depends("nombre","apellidos")
     def _nombre_completo(self):
-        self.name = f'{self.apellidos}, {self.nombre}'
+        for autor in self:
+            autor.name = f'{autor.apellidos}, {autor.nombre}'
 

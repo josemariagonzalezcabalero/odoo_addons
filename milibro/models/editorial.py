@@ -9,7 +9,7 @@ class Editorial(models.Model):
     direccion = fields.Char(string="Dirección", help="Direccion de la editorial.")
     poblacion = fields.Char(string="Población", help="Poblacioón de la editorial.")
 
-    cantidad_libros = fields.Integer(string="Cantidad de libros", compute="_num_libros")
+    cantidad_libros = fields.Integer(string="Cantidad de libros", compute="_num_libros", store=True)
 
     # Relaciones
     libro_ids = fields.One2many(comodel_name="milibro.libro", inverse_name="editorial_id")
