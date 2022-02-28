@@ -22,23 +22,12 @@
                             <field name="name"/>
                             <field name="description"/>
                         </group>
-<!--                        <notebook>-->
-<!--                            <page string="Libros">-->
-<!--                                <field name="libro_ids">-->
-<!--                                    <tree>-->
-<!--                                        <field name="nombre"/>-->
-<!--                                        <field name="isbn"/>-->
-<!--                                        <field name="editorial_id"/>-->
-<!--                                    </tree>-->
-<!--                                </field>-->
-<!--                            </page>-->
-<!--                        </notebook>-->
                     </sheet>
                 </form>
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="milibro.autor_act_window">
+        <record model="ir.actions.act_window" id="milibro.cdu_act_window">
             <field name="name">CDU</field>
             <field name="res_model">milibro.cdu</field>
             <field name="view_mode">tree,form</field>
@@ -49,6 +38,5 @@
             </field>
         </record>
 
-<!--        <menuitem name="Autores" id="milibro.autor_menu_root" parent="milibro.auxiliares" action="milibro.autor_act_window"/>-->
     </data>
 </odoo>

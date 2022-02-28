@@ -34,7 +34,8 @@
         'views/autor.xml',
         'views/editorial.xml',
         'views/categoria.xml',
-        'views/cdu.xml'
+        'views/cdu.xml',
+        'views/prestamo.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

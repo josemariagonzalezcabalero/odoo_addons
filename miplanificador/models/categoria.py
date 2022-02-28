@@ -5,7 +5,7 @@ from odoo.exceptions import ValidationError
 
 
 class Categoria(models.Model):
-     _name = 'miplanificador.categoria'
-     _description = 'Categorías'
+    _name = 'miplanificador.categoria'
+    _description = 'Categorías'
 
-     name = fields.Char(string="Nombre", required=True)
+    name = fields.Char(string="Nombre", required=True)

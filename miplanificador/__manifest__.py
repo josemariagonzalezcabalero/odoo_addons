@@ -7,8 +7,7 @@
         Planificador de Proyectos""",
 
     'description': """
-        En este modulo se planificarán cosas ¿Qué cosas? ª
-    """,
+        En este modulo se planificarán cosas.""",
 
     'author': "Jose María González Caballero",
     'website': "http://www.ieschirinos.com",
@@ -24,9 +23,12 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'security/ir.model.access.csv',
+        'views/categoria.xml',
+        'views/proyecto.xml',
+        'views/trabajo.xml',
+        'views/tarea.xml',
+        'views/menu.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

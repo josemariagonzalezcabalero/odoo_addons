@@ -76,7 +76,7 @@
             </field>
         </record>
 
-        <menuitem name="Autores" id="milibro.autor_menu_root" parent="milibro.auxiliares" action="milibro.autor_act_window"/>
+        <menuitem name="Autores" id="milibro.auxiliares_autores" parent="milibro.auxiliares" action="milibro.autor_act_window"/>
 
     </data>
 </odoo>

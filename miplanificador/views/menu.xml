@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Top menu item -->
+        <menuitem name="Mi Planificador" id="miplanificador.menu_root"/>
+
+        <menuitem name="Tareas" id="miplanificador.tareas" parent="miplanificador.menu_root"
+                  action="miplanificador.tarea_act_window"/>
+        <menuitem name="Proyectos" id="miplanificador.proyectos" parent="miplanificador.menu_root"
+                  action="miplanificador.proyecto_act_window"/>
+
+        <!-- submenu auxiliares -->
+        <menuitem name="Auxiliares" id="miplanificador.auxiliares" parent="miplanificador.menu_root"/>
+        <menuitem name="Categorías" id="miplanificador.auxiliares_categorias" parent="miplanificador.auxiliares"
+                  action="miplanificador.categoria_act_window"/>
+        <menuitem name="Trabajos" id="miplanificador.auxiliares_trabajos" parent="miplanificador.auxiliares"
+                  action="miplanificador.trabajo_act_window"/>
+
+    </data>
+</odoo>

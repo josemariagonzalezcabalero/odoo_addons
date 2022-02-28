@@ -1,6 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_miplanificador_miplanificador,miplanificador.miplanificador,model_miplanificador_miplanificador,base.group_user,1,1,1,1
-acess_miplanificador_categoria,miplanificador.categoria,model_miplanificador_categoria,base.group_user,1,1,1,1
-acess_miplanificador_proyecto,miplanificador.proyecto,model_miplanificador_proyecto,base.group_user,1,1,1,1
-acess_miplanificador_tarea,miplanificador.tarea,model_miplanificador_tarea,base.group_user,1,1,1,1
-acess_miplanificador_trabajo,miplanificador.trabajo,model_miplanificador_trabajo,base.group_user,1,1,1,1
+access_miplanificador_categoria,Acceso usuarios categorias,model_miplanificador_categoria,base.group_user,1,1,1,1
+access_miplanificador_proyecto,Acceso usuarios proyectos,model_miplanificador_proyecto,base.group_user,1,1,1,1
+access_miplanificador_tarea,Acceso usuarios tareas,model_miplanificador_tarea,base.group_user,1,1,1,1
+access_miplanificador_trabajo,Acceso usuarios trabajos,model_miplanificador_trabajo,base.group_user,1,1,1,1

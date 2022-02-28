@@ -1,5 +1,6 @@
 from odoo import fields, models, api
 
+
 class Tarea(models.Model):
     _name = 'miplanificador.tarea'
     _description = 'Tareas'
@@ -21,9 +22,9 @@ class Tarea(models.Model):
     categoria_ids = fields.Many2many(string="Categorias", comodel_name="miplanificador.categoria")
 
     _sql_constraints = [
-        ('check_precio_hora', 'CHECK(precio_hora < 0)',
+        ('check_precio_hora', 'CHECK(precio_hora >= 0)',
          'El precio/hora de la tarea no puede ser inferior a cero'),
-        ('check_fechas', 'CHECK(fecha_inicio > fecha_fin',
+        ('check_fechas', 'CHECK(fecha_inicio <= fecha_fin)',
          'La fecha de inicio de la tarea no puede ser superior a la fecha de fin')
     ]
 
@@ -37,26 +38,31 @@ class Tarea(models.Model):
                 horas += trabajo.horas
             tarea.total_horas = horas
 
-    @api.onchange("fecha_inicio","fecha_fin")
+    @api.onchange("fecha_inicio", "fecha_fin")
     def _comprobar_fechas(self):
         res = {}
         if self.fecha_inicio and self.fecha_fin:
-            if self.fecha_inicio > self.fecha.fin:
+            if self.fecha_inicio > self.fecha_fin:
                 self.fecha_fin = self.fecha_inicio
-                res['warning'] = {'title': ('Advertencia'),
-                                  'message': ('La fecha de inicio de la tarea no puede ser superior a la fecha de fin')
+                res['warning'] = {'title': 'Advertencia',
+                                  'message': 'La fecha de inicio de la tarea no puede ser superior a la fecha de fin'
                                   }
         return res
 
     @api.onchange("precio_hora")
     def _comprobar_precio_hora(self):
         res = {}
-        if(self.precio_hora and self.precio_hora < 0):
+        if self.precio_hora and self.precio_hora < 0:
             self.precio_hora = 0
-            res['warning'] = {'title': ('Advertencia'),
-                              'message': ('El precio/hora de la tarea no puede ser inferior a cero')
+            res['warning'] = {'title': 'Advertencia',
+                              'message': 'El precio/hora de la tarea no puede ser inferior a cero'
                               }
         return res
 
-
-
+    @api.depends("total_horas","precio_hora")
+    def _calcular_total_coste(self):
+        for tarea in self:
+            if tarea.total_horas != 0 and tarea.precio_hora != 0:
+                tarea.total_coste = tarea.total_horas * tarea.precio_hora
+            else:
+                tarea.total_coste = 0

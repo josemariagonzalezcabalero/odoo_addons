@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import models, categoria, proyecto, tarea, trabajo
+from . import categoria, proyecto, tarea, trabajo

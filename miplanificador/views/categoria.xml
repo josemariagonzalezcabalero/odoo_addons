@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="categoria_act_window" model="ir.actions.act_window">
+            <field name="name">Categorias</field>
+            <field name="res_model">miplanificador.categoria</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Agrege la primera categoría.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>
