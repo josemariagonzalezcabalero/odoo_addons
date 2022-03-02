@@ -14,12 +14,20 @@ class Prestamo(models.Model):
     fecha_fin_prestamo = fields.Date(string="Fecha fin préstamo", stored=True, compute="_calcular_fecha_fin_prestamo")
     estado = fields.Selection([('1', 'Creando'), ('2', 'Prestado'), ('3', 'Devuelto')], required=True, default='1')
 
+    @api.model
+    def create(self, data_list):
+        res = super(Prestamo, self).create(data_list)
+        res.estado = '2'
+        res.ejemplar_id.situacion = False
+        res.autor_id = res.ejemplar_id.libro_id.autor_id
+        res.libro_id = res.ejemplar_id.libro_id
+        return res
+
     # Relaciones
     libro_id = fields.Many2one(comodel_name="milibro.libro", string="Libro")
     autor_id = fields.Many2one(comodel_name="milibro.autor", string="Autor")
     ejemplar_id = fields.Many2one(comodel_name="milibro.ejemplar", string="Ejemplar", required=True)
     usuario_id = fields.Many2one(comodel_name="res.partner", string="Usuario")
-
 
     @api.depends("create_date")
     def _calcular_num_prestamo(self):
@@ -58,14 +66,29 @@ class Prestamo(models.Model):
 
     @api.onchange("autor_id")
     def _cambio_autor(self):
-        res = {}
-        if self.libro_id:
-            libro_actual = self.libro_id
-            for libro in self.autor_id.libro_ids:
-                if libro != libro_actual:
-                    res['warning'] = {'title': 'Advertencia',
-                                      'message': 'El libro no pertenece a ese autor, cambiando.'
-                                      }
-                    self.libro_id = False
-                    print('no esta el libro en este autor')
-        return res
+        for prestamo in self:
+            if prestamo.libro_id:
+                if prestamo.autor_id.libro_ids != prestamo.libro_id:
+                    prestamo.libro_id = False
+
+    @api.onchange("libro_id")
+    def _cambio_libro(self):
+        for prestamo in self:
+            if prestamo.ejemplar_id:
+                if prestamo.libro_id.ejemplar_id != prestamo.ejemplar_id:
+                    prestamo.ejemplar_id = False
+
+    def devolver_prestamo(self):
+        self.estado = '3'
+        self.fecha_devolucion = fields.datetime.now()
+        self.ejemplar_id.situacion = True
+
+    def ampliar_fecha_devolucion(self):
+        if self.fecha_fin_prestamo:
+            fecha_sumada = self.fecha_ini_prestamo + timedelta(days=15)
+            if datetime.isoweekday(fecha_sumada) == 6: # sabado
+                self.fecha_ini_prestamo = self.fecha_ini_prestamo + timedelta(days=17)
+            elif datetime.isoweekday(fecha_sumada) == 7: #domingo
+                self.fecha_ini_prestamo = self.fecha_ini_prestamo + timedelta(days=16)
+            else:
+                self.fecha_ini_prestamo = fecha_sumada

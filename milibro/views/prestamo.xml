@@ -7,25 +7,20 @@
             <field name="model">milibro.prestamo</field>
             <field name="arch" type="xml">
                 <form>
+                    <header>
+                        <button name="devolver_prestamo" type="object" string="Devolver préstamo"/>
+                        <button name="ampliar_fecha_devolucion" type="object" string="Ampliar fecha devolución"/>
+                    </header>
                     <sheet>
-                        <!--                        <div class="oe_title">-->
-                        <!--                            <label for="example_title"/>-->
-                        <!--                            <h1>-->
-                        <!--                                <field name="example_title" placeholder="Title"/>-->
-                        <!--                            </h1>-->
-                        <!--                        </div>-->
                         <group>
                             <group>
                                 <field name="usuario_id"/>
                                 <field name="autor_id"/>
-                                <field name="libro_id" domain="[('autor_id','=?','autor_id')]"/>
-                                <field name="ejemplar_id" domain="[('situacion','=','True')]"/>
+                                <field name="libro_id" domain="[('autor_id','=?',autor_id)]"/>
+                                <field name="ejemplar_id" domain="[('libro_id','=?',libro_id),('situacion','=',True)]"/>
                                 <field name="fecha_ini_prestamo"/>
                                 <field name="fecha_fin_prestamo"/>
                             </group>
-                            <!--                            <group>-->
-                            <!--                                <field name="example_field"/>-->
-                            <!--                            </group>-->
                         </group>
                     </sheet>
                 </form>
