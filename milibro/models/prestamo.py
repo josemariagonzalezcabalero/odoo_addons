@@ -85,10 +85,10 @@ class Prestamo(models.Model):
 
     def ampliar_fecha_devolucion(self):
         if self.fecha_fin_prestamo:
-            fecha_sumada = self.fecha_ini_prestamo + timedelta(days=15)
-            if datetime.isoweekday(fecha_sumada) == 6: # sabado
-                self.fecha_ini_prestamo = self.fecha_ini_prestamo + timedelta(days=17)
-            elif datetime.isoweekday(fecha_sumada) == 7: #domingo
-                self.fecha_ini_prestamo = self.fecha_ini_prestamo + timedelta(days=16)
+            fecha_sumada = self.fecha_fin_prestamo + timedelta(days=15)
+            if datetime.isoweekday(fecha_sumada) == 6:  # sabado
+                self.fecha_fin_prestamo = self.fecha_fin_prestamo + timedelta(days=17)
+            elif datetime.isoweekday(fecha_sumada) == 7:  # domingo
+                self.fecha_fin_prestamo = self.fecha_fin_prestamo + timedelta(days=16)
             else:
-                self.fecha_ini_prestamo = fecha_sumada
+                self.fecha_fin_prestamo = fecha_sumada
